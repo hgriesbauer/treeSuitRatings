@@ -2,7 +2,7 @@
 
 usethis::use_data("cfrgPG")
 
-cfrg_PG <- read_csv("data-raw/cfrg_PG.csv")
+cfrgPG <- read_csv("data-raw/cfrg_PG.csv")
 
-
+save(cfrgPG,file="data/cfrgPG.RData")
 

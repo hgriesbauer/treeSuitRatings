@@ -2,10 +2,10 @@ Package: treeSuitRatings
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
 Authors@R: 
-    c(person(given = "First",
-             family = "Last",
+    c(person(given = "Hardy",
+             family = "Griesbauer",
              role = c("aut", "cre"),
-             email = "first.last@example.com"),
+             email = "Hardy.Griesbauer@gov.bc.ca"),
       person(given = "Province of British Columbia",
              role = "cph"))
 Description: What the package does (one paragraph).
