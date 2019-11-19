@@ -1,0 +1,57 @@
+---
+title: "Extract_RESULTS_Silv"
+author: "Hardy Griesbauer"
+date: "18/11/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Extract silviculture information for North Area using bcdata package
+```{r}
+# Load libraries
+library(bcdata)
+library(bcmapsdata)
+library(sf)
+
+```
+
+First step is to create a shapefile to filter RESULTS records.  We need to create three separate ones for the three regions in North Area, because to extract all records for North Area in one command is too much.
+
+```{r}
+# First, we need to get Omineca, Skeena and Northeast regions to use as filter for bcdata
+
+rom<-
+  bcdc_query_geodata("natural-resource-nr-regions") %>% #query region
+  # filter(ORG_UNIT%in%c("ROM","RSK","RNO")) %>% # for three regions of interest
+  filter(ORG_UNIT%in%c("ROM")) %>% # for three regions of interest
+      collect() %>% # collect
+  sf::st_union() # combine polygons into single
+
+```
+
+
+
+```{r eval=FALSE}
+
+romRESULTS<-
+  X %>% 
+ st_intersection(rom)
+  save(romRESULTS,file="romResults_spatial.RData")
+
+```
+
+
+### Formatting and 
+```{r}
+X<-
+  romRESULTS %>% 
+  dplyr::select(1:50) %>%  # only need first 50 columns or so
+  
+  pivot_longer(X,cols=dplyr::select(starts_with("S_SPECIES_CODE")),names_to="species",names_prefix="S_SPECIES_")
+
+
+```
+
